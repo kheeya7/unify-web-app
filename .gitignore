@@ -1,2 +1,11 @@
 node_modules
 dist/bundle.js
+dist/*.svg
+dist/*.png
+dist/*.jpg
+dist/*.jpeg
+dist/*.woff*
+dist/*.svg
+dist/*.ttf
+dist/*.eot
+.vscode
