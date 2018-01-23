@@ -12,10 +12,22 @@ export class TodoItemsView extends Backbone.View {
         this.model.loadData();
     }
 
+    get events() {
+        return {
+            'click .add-todo-button': 'onAddTodoItem',
+        };
+    }
+
     render() {
         this.$el.html(template({
             items: this.model.models,
         }));
+    }
+
+    onAddTodoItem() {
+        const inputValue = this.$('.todo-item-input')[0].value;
+
+        this.model.addNewItem(inputValue);
     }
 }
 

@@ -1,6 +1,6 @@
 import Backbone from 'backbone';
 
-export class TodoItemModel extends Backbone.Model {
+export class JobPostingModel extends Backbone.Model {
     initialize(savedObj) {
         if (savedObj) {
             this.loadWithSavedItem(savedObj);
@@ -9,11 +9,11 @@ export class TodoItemModel extends Backbone.Model {
 
     loadWithSavedItem(savedObj) {
         this.id = savedObj.id;
-        this.complete = savedObj.complete;
         this.createdAt = savedObj.createdAt;
-        this.deleted = savedObj.deleted;
-        this.text = savedObj.text;
         this.updatedAt = savedObj.updatedAt;
-        this.version = savedObj.version;
+        this.deleted = savedObj.deleted;
+        this.title = savedObj.title;
+        this.jobDescription = savedObj.jobDescription;
+        this.industry = savedObj.industry;
     }
 }
