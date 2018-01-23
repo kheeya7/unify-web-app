@@ -16,6 +16,19 @@ export class TodoItemsCollection extends Backbone.Collection {
             .then(results => this.onSuccess(results),
                 error => this.onFailure(error));
     }
+    
+    addNewItem(itemText) {
+        const newItem = new TodoItemModel();
+        newItem.set('text', itemText);
+
+        this.table.insert(newItem)
+            .done(insertedItem => this.onItemInserted(insertedItem),
+                error => this.onFailure(error));
+    }
+
+    onItemInserted(item) {
+        this.add(item, {at: 0});
+    }
 
     onSuccess(results) {
         const todoItemModels = _.map(results, (item) => {

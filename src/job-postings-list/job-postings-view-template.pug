@@ -1,0 +1,12 @@
+.job-postings-content.container
+    input.job-title-input.form-control(type='text', placeholder='Enter job title')
+    input.job-industry-input.form-control(type='text', placeholder='Enter job industry')
+    input.job-description-input.form-control(type='text', placeholder='Give job description')
+    button.post-job-button.btn.btn-default(type='button')= 'Post this job'
+    hr
+    ul
+    each jobPosting in jobPostings
+        li
+            .job-posting-title= jobPosting.title
+            .job-posting-industry= jobPosting.industry
+            .job-posting-description= jobPosting.jobDescription
