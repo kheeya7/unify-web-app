@@ -8,12 +8,12 @@ export class JobPostingModel extends Backbone.Model {
     }
 
     loadWithSavedItem(savedObj) {
-        this.id = savedObj.id;
-        this.createdAt = savedObj.createdAt;
-        this.updatedAt = savedObj.updatedAt;
-        this.deleted = savedObj.deleted;
-        this.title = savedObj.title;
-        this.jobDescription = savedObj.jobDescription;
-        this.industry = savedObj.industry;
+        this.set('id', savedObj.id);
+        this.set('createdAt', savedObj.createdAt);
+        this.set('updatedAt', savedObj.updatedAt);
+        this.set('deleted', savedObj.deleted);
+        this.set('title', savedObj.title);
+        this.set('jobDescription',savedObj.jobDescription);
+        this.set('industry', savedObj.industry);
     }
 }

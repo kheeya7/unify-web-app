@@ -7,6 +7,6 @@
     ul
     each jobPosting in jobPostings
         li
-            .job-posting-title= jobPosting.title
-            .job-posting-industry= jobPosting.industry
-            .job-posting-description= jobPosting.jobDescription
+            .job-posting-title= jobPosting.attributes.title
+            .job-posting-industry= jobPosting.attributes.industry
+            .job-posting-description= jobPosting.attributes.jobDescription
