@@ -1,7 +1,6 @@
 import Backbone from 'backbone';
 import template from './template.pug';
 import { JobPostingsView } from '../job-postings-list/job-postings-view.js';
-import rp from 'request-promise';
 import $ from 'jquery';
 
 export class Rootpage extends Backbone.View {
