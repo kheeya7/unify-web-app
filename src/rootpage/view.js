@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import Backbone from 'backbone';
 import template from './template.pug';
 import { JobPostingsView } from '../job-postings-list/job-postings-view.js';
@@ -9,6 +8,8 @@ export class Rootpage extends Backbone.View {
     initialize() {
         this.router = new UnifyWebAppRouter();
         Backbone.history.start();
+
+        this.currentRoute = '';
         this.router.on('onRouteChange', route => this.onRouteChanged(route));
     }
 
@@ -29,6 +30,17 @@ export class Rootpage extends Backbone.View {
             default:
             break;
         }
+
+        this.currentRoute = route;
+    }
+
+    getCurrentRoute() {
+        // href contains full path including url(www.example.com/#hello)
+        // origin contains path without parameter(www.example.com)
+        // +2 is there to exclude / and #
+        const currentPath = window.location.href.substring(window.location.origin.length + 2);
+
+        return currentPath;
     }
 
     onNavigateToImports() {
@@ -46,11 +58,13 @@ export class Rootpage extends Backbone.View {
     }
 
     render() {
-        this.$el.html(template());        
+        this.$el.html(template());
 
-        // $.getJSON('https://jobs.github.com/positions.json?callback=?').then((data) => {
-        //     console.log(data);
-        // });
+        // When render is called and if current route from url is different
+        // from what the route this rootview knows, call onRouteChanged
+        if (this.currentRoute !== this.getCurrentRoute()) {
+            this.onRouteChanged(this.getCurrentRoute());
+        }
 
         return this;
     }
