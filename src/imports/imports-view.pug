@@ -1,1 +1,20 @@
-p= 'imports view'
+.import-jobs-content.container
+    button.import-button.btn.btn-default= 'Import'
+    button.upload-button.btn.btn-default= 'Upload to server'
+    .status-message= ''
+    table.table.table-striped
+        tr
+            th= 'status'
+            th= 'id'
+            th= 'title'
+            th= 'advanced details'
+        for job in jobData
+            tr
+                td(id='postingid-' + job['id'])= ''
+                td= job['id']
+                td= job['title']
+                td
+                    .advanced-detail.hide
+                        for val, key in job
+                            if (key !== 'id' || key !== 'title')
+                                p!= key + ": " + val
