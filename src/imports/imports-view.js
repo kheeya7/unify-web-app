@@ -7,12 +7,13 @@ export class ImportsView extends Backbone.View {
         this.importedData = [];
 
         const client = new WindowsAzure.MobileServiceClient('https://unify-app.azurewebsites.net');
-        this.table = client.getTable('JobPostingsTable');
+        this.table = client.getTable('JobPosting');
     }
 
     get events() {
         return {
             'click .import-button': ()=> this.fetchJobPostings(),
+            'click .upload-button': ()=> this.startUploadingData(),
         }
     }
 
@@ -23,6 +24,35 @@ export class ImportsView extends Backbone.View {
             this.$('.status-message').empty().append(data.length + ' job postings fetched');
             this.render();
         });
+    }
+
+    startUploadingData() {
+        if (this.importedData.length < 1) {
+            return;
+        }
+
+        const itemToUpload = this.importedData.shift();
+
+        this.table.insert(itemToUpload)
+            .done(
+                savedItem => this.onItemSaved(savedItem),
+                error => this.onFailure(error, itemToUpload));
+    }
+
+    onItemSaved(savedItem) {
+        const cellId = '#postingid-' + savedItem.id;
+
+        this.$(cellId).append('Success');
+
+        this.startUploadingData();
+    }
+
+    onFailure(error, itemToUpload) {
+        const cellId = '#postingid-' + itemToUpload.id;
+
+        this.$(cellId).append(error.request.statusText);        
+
+        this.startUploadingData();
     }
 
     render() {
