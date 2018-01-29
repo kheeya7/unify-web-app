@@ -3,13 +3,9 @@ import _ from 'underscore';
 import { JobPostingModel } from './job-posting-model.js';
 
 export class JobPostingsCollection extends Backbone.Collection {
-    initialize() {
-        this.model = JobPostingModel;
-    }
-
     loadData() {
         const client = new WindowsAzure.MobileServiceClient('https://unify-app.azurewebsites.net');
-        this.table = client.getTable('JobPostingsTable');
+        this.table = client.getTable('JobPosting');
 
         this.table
             .read()
