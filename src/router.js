@@ -6,18 +6,6 @@ const UnifyWebAppRouter = Backbone.Router.extend({
         'imports': 'imports',
         'jobPostings': 'jobPostings',
     },
-
-    index: function() {
-        this.trigger('onRouteChange', 'index');
-    },
-
-    imports: function() {
-        this.trigger('onRouteChange', 'imports')
-    },
-
-    jobPostings: function() {
-        this.trigger('onRouteChange', 'jobPostings');
-    }
 });
 
 export { UnifyWebAppRouter };

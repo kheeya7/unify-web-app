@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
-import template from './imports-view.pug';
 import $ from 'jquery';
+import { ImportsMapper } from './imports-mapper';
+import template from './imports-view.pug';
 
 export class ImportsView extends Backbone.View {
     initialize() {
@@ -32,8 +33,9 @@ export class ImportsView extends Backbone.View {
         }
 
         const itemToUpload = this.importedData.shift();
+        const convertedItem = ImportsMapper.getJobPostingModelFromGitHubJob(itemToUpload);
 
-        this.table.insert(itemToUpload)
+        this.table.insert(convertedItem)
             .done(
                 savedItem => this.onItemSaved(savedItem),
                 error => this.onFailure(error, itemToUpload));
