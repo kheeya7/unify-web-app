@@ -10,7 +10,9 @@ export class Rootpage extends Backbone.View {
         Backbone.history.start();
 
         this.currentRoute = '';
-        this.router.on('onRouteChange', route => this.onRouteChanged(route));
+        this.router.on('route:index', route => this.onRouteChanged('index'));
+        this.router.on('route:imports', route => this.onRouteChanged('imports'));
+        this.router.on('route:jobPostings', route => this.onRouteChanged('jobPostings'));
     }
 
     onRouteChanged(route) {

@@ -1,6 +1,5 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
-import { JobPostingModel } from './job-posting-model.js';
 
 export class JobPostingsCollection extends Backbone.Collection {
     loadData() {
@@ -13,22 +12,12 @@ export class JobPostingsCollection extends Backbone.Collection {
                 error => this.onFailure(error));
     }
 
-    insertNewJobPosting(jobPostingModel) {
-        this.table.insert(jobPostingModel)
-            .done(savedItem => this.onItemSaved(savedItem),
-            error => this.onFailure(error));
-    }
-
     onItemSaved(item) {
         this.add(item, {at: 0});
     }
 
     onSuccess(results) {
-        const jobPostingModels = _.map(results, (item) => {
-            return new JobPostingModel(item);
-        });
-
-        this.add(jobPostingModels);
+        this.add(results);
     }
 
     onFailure(error) {
