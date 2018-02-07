@@ -7,7 +7,7 @@ export class ImportsView extends Backbone.View {
     initialize() {
         this.importedData = [];
 
-        const client = new WindowsAzure.MobileServiceClient('https://unify-app.azurewebsites.net');
+        const client = new WindowsAzure.MobileServiceClient('https://unify-proto.azurewebsites.net');
         this.table = client.getTable('JobPosting');
     }
 
