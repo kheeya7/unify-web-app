@@ -1,0 +1,10 @@
+.user-profile-edit-content.container
+    .section
+        form.form-label
+            fieldset
+                input#username(name='username', type='text', autocomplete='off' required)
+                label(for='username')= 'User name'
+            fieldset
+                input#email(name='email', type='text', autocomplete='on' required)
+                label(for='email')= 'Email'
+        button.save-button.btn.btn-default= 'Save'
