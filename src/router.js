@@ -5,6 +5,8 @@ const UnifyWebAppRouter = Backbone.Router.extend({
         '': 'index',
         'imports': 'imports',
         'jobPostings': 'jobPostings',
+        'profile-setup': 'profile-setup',
+        'main': 'main',
     },
 });
 
