@@ -10,7 +10,7 @@ import { UnifyWebAppRouter } from '../router.js';
 
 window.unifyApp = {
     router: new UnifyWebAppRouter(),
-    client: new WindowsAzure.MobileServiceClient('https://unify-proto.azurewebsites.net'),
+    // client: new WindowsAzure.MobileServiceClient('https://unify-proto.azurewebsites.net'),
     userManager: new UserManager(),
 };
 

@@ -8,4 +8,13 @@ dist/*.woff*
 dist/*.svg
 dist/*.ttf
 dist/*.eot
+public/bundle.js
+public/*.svg
+public/*.png
+public/*.jpg
+public/*.jpeg
+public/*.woff*
+public/*.svg
+public/*.ttf
+public/*.eot
 .vscode
