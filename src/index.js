@@ -21,3 +21,4 @@ const rootpage = new Rootpage();
 rootpage.render();
 
 $('body').append(rootpage.$el);
+
