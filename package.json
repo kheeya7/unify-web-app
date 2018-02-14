@@ -8,6 +8,8 @@
     "bluebird": "^3.5.1",
     "bootstrap": "^3.3.7",
     "bootstrap-webpack": "0.0.6",
+    "firebase": "^4.9.1",
+    "firebaseui": "^2.6.0",
     "jquery": "^3.2.1",
     "less": "^2.7.3",
     "underscore": "^1.8.3",
