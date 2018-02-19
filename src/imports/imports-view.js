@@ -7,8 +7,7 @@ export class ImportsView extends Backbone.View {
     initialize() {
         this.importedData = [];
 
-        const client = window.unifyApp.client;
-        this.table = client.getTable('JobPosting');
+        this.jobPostingDBRef = window.unifyApp.database.ref('jobPostings');
     }
 
     get events() {
@@ -32,29 +31,22 @@ export class ImportsView extends Backbone.View {
             return;
         }
 
-        const itemToUpload = this.importedData.shift();
-        const convertedItem = ImportsMapper.getJobPostingModelFromGitHubJob(itemToUpload);
+        const objToUpload = {};
 
-        this.table.insert(convertedItem)
-            .done(
-                savedItem => this.onItemSaved(savedItem),
-                error => this.onFailure(error, itemToUpload));
-    }
+        for (let i = 0; i < this.importedData.length; i++) {
+            const convertedItem = ImportsMapper.getJobPostingModelFromGitHubJob(this.importedData[i]);
+            objToUpload[convertedItem.id] = convertedItem;
+        }
 
-    onItemSaved(savedItem) {
-        const cellId = '#postingid-' + savedItem.id;
+        this.jobPostingDBRef.set(objToUpload, (error) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('success');
+            }
 
-        this.$(cellId).append('Success');
-
-        this.startUploadingData();
-    }
-
-    onFailure(error, itemToUpload) {
-        const cellId = '#postingid-' + itemToUpload.id;
-
-        this.$(cellId).append(error.request.statusText);        
-
-        this.startUploadingData();
+            this.importedData = [];
+        });
     }
 
     render() {

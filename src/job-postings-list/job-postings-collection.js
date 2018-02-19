@@ -1,27 +1,20 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 
-export class JobPostingsCollection extends Backbone.Collection {
+export class JobPostingsCollection extends Backbone.Model {
+    initialize() {
+        this.jobPostings = {};
+    }
+
     loadData() {
-        const client = window.unifyApp.client;
-
-        this.table = client.getTable('JobPosting');
-
-        this.table
-            .read()
-            .then(results => this.onSuccess(results),
-                error => this.onFailure(error));
+        this.jobPostingDBRef = window.unifyApp.database.ref('jobPostings');
+        this.jobPostingDBRef.on('value', (snapshot) => {
+            this.jobPostings = snapshot.val();
+            this.trigger('jobPostingsUpdated', this.jobPostings);
+        });
     }
 
-    onItemSaved(item) {
-        this.add(item, {at: 0});
-    }
-
-    onSuccess(results) {
-        this.add(results);
-    }
-
-    onFailure(error) {
-        throw new Error('Error loading data: ', error);
+    getJobPostings() {
+        return this.jobPostings;
     }
 }

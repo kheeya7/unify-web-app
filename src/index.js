@@ -6,13 +6,6 @@ import './styles/user-profile-edit.less';
 import { Rootpage } from './rootpage/view.js';
 import { UnifyWebAppRouter } from './router.js';
 
-window.unifyApp = {
-    router: new UnifyWebAppRouter(),
-    currentUser: undefined,
-    // client: new WindowsAzure.MobileServiceClient('https://unify-proto.azurewebsites.net'),
-    // userManager: new UserManager(),
-};
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyD163pvGBgFJO2FNR_MIUcXLbdGD0dBz_k",
@@ -23,6 +16,14 @@ var config = {
     messagingSenderId: "617755998297"
 };
 firebase.initializeApp(config);
+
+window.unifyApp = {
+    router: new UnifyWebAppRouter(),
+    database: firebase.database(),
+    currentUser: undefined,
+    // client: new WindowsAzure.MobileServiceClient('https://unify-proto.azurewebsites.net'),
+    // userManager: new UserManager(),
+};
 
 const rootpage = new Rootpage();
 
