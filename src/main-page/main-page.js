@@ -3,7 +3,7 @@ import template from './main-page-template.pug';
 
 export class MainPage extends Backbone.View {
     initialize() {
-        this.currentUser = window.unifyApp.userManager.currentUser;
+        this.currentUser = window.unifyApp.currentUser;
     }
     render() {
         this.$el.html(template({
