@@ -4,6 +4,14 @@ import * as firebase from "firebase";
 import './styles/index.less';
 import './styles/user-profile-edit.less';
 import { Rootpage } from './rootpage/view.js';
+import { UnifyWebAppRouter } from './router.js';
+
+window.unifyApp = {
+    router: new UnifyWebAppRouter(),
+    currentUser: undefined,
+    // client: new WindowsAzure.MobileServiceClient('https://unify-proto.azurewebsites.net'),
+    // userManager: new UserManager(),
+};
 
 // Initialize Firebase
 var config = {
@@ -18,7 +26,20 @@ firebase.initializeApp(config);
 
 const rootpage = new Rootpage();
 
+// Render rootpage with the loading screen
 rootpage.render();
+
+// After sign-in state is determined, notify the rootpage.
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        window.unifyApp.currentUser = user;
+        // User is signed in.
+        rootpage.showMainScreen();
+    } else {
+        // No user is signed in.
+        rootpage.showLoginScreen();
+    }
+});
 
 $('body').append(rootpage.$el);
 

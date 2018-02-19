@@ -2,7 +2,8 @@ import Backbone from 'backbone';
 
 const UnifyWebAppRouter = Backbone.Router.extend({
     routes: {
-        '': 'index',
+        '': 'login',
+        'login': 'login',
         'imports': 'imports',
         'jobPostings': 'jobPostings',
         'profile-setup': 'profile-setup',

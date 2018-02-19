@@ -41,6 +41,7 @@ export class LoginPage extends Backbone.View {
     get events() {
         return {
             'click .login-button': 'onLoginClicked',
+            'click .logout-button': 'onLogoutClicked',
         };
     }
 
@@ -49,6 +50,10 @@ export class LoginPage extends Backbone.View {
 
         // The start method will wait until the DOM is loaded.
         this.ui.start('#firebaseui-auth-container', this.uiConfig);
+    }
+
+    onLogoutClicked() {
+        firebase.auth().signOut();
     }
 
     onLoginClicked() {
