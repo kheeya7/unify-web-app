@@ -1,8 +1,18 @@
 .main-page-content
-    .section
-        .welcome-name= 'Welcome' + currentUser.displayName
-        .welcome-email= currentUser.email
-    .section
-        button.btn.go-to-import= 'Go to import page'
-    .section
-        button.btn.go-to-job-postings= 'Job Postings'
+    .jumbotron
+        .container
+            .welcome-name= 'Welcome' + currentUser.displayName
+            .welcome-email= currentUser.email
+    .container
+        .row
+            .col-md-4
+                h2= 'Heading'
+                p= 'import is important'
+                button.btn.go-to-import= 'Go to import page'
+            .col-md-4
+                h2= 'Heading'
+                p= 'job posting is important'
+                button.btn.go-to-job-postings= 'Job Postings'
+            .col-md-4
+                h2= 'Heading'
+                p= 'I do not know what to say'

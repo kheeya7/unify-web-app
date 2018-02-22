@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import 'bootstrap-webpack';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 import * as firebase from "firebase";
 import './styles/index.less';
 import './styles/user-profile-edit.less';
