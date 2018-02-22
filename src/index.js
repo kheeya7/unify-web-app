@@ -8,12 +8,12 @@ import { UnifyWebAppRouter } from './router.js';
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyD163pvGBgFJO2FNR_MIUcXLbdGD0dBz_k",
-    authDomain: "unify-proto.firebaseapp.com",
-    databaseURL: "https://unify-proto.firebaseio.com",
-    projectId: "unify-proto",
-    storageBucket: "unify-proto.appspot.com",
-    messagingSenderId: "617755998297"
+    apiKey: "AIzaSyAgMgWurk_QcfAYTBo9_Efrq9MolX2MAak",
+    authDomain: "unify-app-51d0a.firebaseapp.com",
+    databaseURL: "https://unify-app-51d0a.firebaseio.com",
+    projectId: "unify-app-51d0a",
+    storageBucket: "unify-app-51d0a.appspot.com",
+    messagingSenderId: "796198836192"
 };
 firebase.initializeApp(config);
 
